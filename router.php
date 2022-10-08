@@ -1,5 +1,6 @@
 <?php
 require_once './app/controllers/remate.controller.php';
+require_once './app/controllers/autenticacion.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -13,6 +14,7 @@ $params = explode('/', $action);
 
 // instancio el unico controller que existe por ahora
 $ctrl = new Controlador();
+$ctrlAut = new AutController();
 
 // tabla de ruteo
 switch ($params[0]) {
@@ -25,8 +27,17 @@ switch ($params[0]) {
     case 'articulos':
         isset($params[1]) ? $ctrl->seccionArticulos($params[1]) : $ctrl->seccionArticulos();
         break;
-    case 'login':
-        $ctrl->login();
+    case 'sesion':
+        $ctrlAut->autForm();
+        break;
+    case 'validateLogin':
+        $ctrlAut->validarUsuario();
+        break;
+    case 'register':
+        $ctrlAut->autForm(true);
+        break;
+    case 'validateRegister':
+        $ctrlAut->registrarUsuario();
         break;
     case 'admin':
         if(isset($params[1])){

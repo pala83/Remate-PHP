@@ -24,6 +24,9 @@
                             <th>Articulo</th>
                             <th>Valor base</th>
                             <th>Vendedor</th>
+                            {if $tieneAcceso}
+                                <th>Edicion</th>
+                            {/if}
                             <th>Mas Info</th>
                         </tr>
                     </thead>

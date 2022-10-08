@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
                 {if !$tieneAcceso}
-                    <a class="navbar-brand" href="home">Remate</a>
+                    <a class="navbar-brand" href="{BASE_URL}">Remate</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -38,10 +38,10 @@
                             <a class="nav-link" href="articulos">Articulos</a>
                         </li>
                     </ul>
-                    <a class="btn btn-outline-success" href="admin" type="button">Acceso</a>
+                    <a class="btn btn-outline-success" href="sesion" type="button">Acceso</a>
                 {else}
                 <div class="d-flex justify-content-between" id="navbarCollapse">
-                    <a class="btn btn-outline-danger" href="home" type="button">Cerrar Sesión</a>
+                    <a class="btn btn-outline-danger" href="{BASE_URL}" type="button">Cerrar Sesión</a>
                 {/if}
                 </div>
             </div>

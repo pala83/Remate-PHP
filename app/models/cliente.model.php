@@ -25,7 +25,6 @@ class ModeloCliente {
     public function insertar($nombre, $apellido, $telefono, $email=null) {
         $query = $this->db->prepare("INSERT INTO cliente (nombre, apellido, telefono, email) VALUES (?, ?, ?, ?)");
         $query->execute([$nombre, $apellido, $telefono, $email]);
-        echo($this->db->lastInsertId());
         return $this->db->lastInsertId();
     }
 

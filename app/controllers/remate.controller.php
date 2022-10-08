@@ -24,14 +24,12 @@ class Controlador {
     private $clienteModel;
     private $publicView;
     private $adminView;
-    private $loginView;
 
     public function __construct() {
         $this->articuloModel = new ModeloArticulo();
         $this->clienteModel = new ModeloCliente();
         $this->publicView = new vistaPublico();
         $this->adminView = new vistaAdmin();
-        $this->loginView = new Login();
     }
     
     public function mostrarHome($id=null) {

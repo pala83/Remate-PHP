@@ -1,7 +1,7 @@
 <?php
 require_once "./libs/smarty-4.2.1/libs/Smarty.class.php";
 
-class Login {
+class VistaAutForm {
 
     private $smarty;
 
@@ -10,8 +10,12 @@ class Login {
         $this->smarty->assign("tieneAcceso", true);
     }
 
-    public function mostrar(){
-        $this->smarty->display("./templates/login.tpl");
+    public function mostrar($registro, $mensaje=null){
+        $this->smarty->assign("registro", $registro);
+        $this->smarty->assign("mensaje", $mensaje);
+        $this->smarty->display("./templates/form-autenticacion.tpl");
     }
+
+
 
 }
