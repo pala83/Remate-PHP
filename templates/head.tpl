@@ -14,38 +14,3 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-
-    <header>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container-fluid">
-                {if !$tieneAcceso}
-                    <a class="navbar-brand" href="{BASE_URL}">Remate</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                {else}
-                    <a class="navbar-brand" href="admin">Remate: Acceso root</a>
-                {/if}
-                {if !$tieneAcceso}
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="vendedores">Vendedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="articulos">Articulos</a>
-                        </li>
-                    </ul>
-                    <a class="btn btn-outline-success" href="sesion" type="button">Acceso</a>
-                {else}
-                <div class="d-flex justify-content-between" id="navbarCollapse">
-                    <a class="btn btn-outline-danger" href="{BASE_URL}" type="button">Cerrar Sesión</a>
-                {/if}
-                </div>
-            </div>
-        </nav>
-    </header>
-<!------------fin-header---------------->
-

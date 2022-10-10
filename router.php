@@ -1,5 +1,6 @@
 <?php
-require_once './app/controllers/remate.controller.php';
+require_once './app/controllers/abm.controller.php';
+require_once './app/controllers/public.controller.php';
 require_once './app/controllers/autenticacion.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -9,23 +10,75 @@ if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
 
-// parsea la accion Ej: dev/juan --> ['dev', juan]
 $params = explode('/', $action);
 
-// instancio el unico controller que existe por ahora
-$ctrl = new Controlador();
+$ctrlPub = new PubController();
 $ctrlAut = new AutController();
 
 // tabla de ruteo
 switch ($params[0]) {
     case 'home':
-        isset($params[1]) ? $ctrl->mostrarHome($params[1]) : $ctrl->mostrarHome();
+        isset($params[1]) ? $ctrlPub->mostrarHome($params[1]) : $ctrlPub->mostrarHome();
         break;
-    case 'vendedores':
-        $ctrl->seccionVendedores();
+    case 'clientes':
+        if(isset($params[1])){
+            $ctrlABM = new ABMController();
+            switch($params[1]){
+                case 'add':
+                    $ctrlABM->agregarCliente();
+                    break;
+                case 'borrar':
+                    $id = isset($params[2]) ? (int)$params[2] : null;
+                    $ctrlABM->borrarCliente($id);
+                    break;
+                case 'borrarFK':
+                    $ctrlABM->borrarFK($params[2]);
+                    break;
+                case 'edit':
+                    $ctrlABM->editarCliente($params[2]);
+                    break;
+                case 'confirmar':
+                    $ctrlABM->confirmarEdicionCliente($params[2]);
+                    break;
+                default:
+                    $ctrlPub->error404();
+                    break;
+            }
+        }
+        else{
+            $ctrlPub->seccionClientes();
+        }
         break;
     case 'articulos':
-        isset($params[1]) ? $ctrl->seccionArticulos($params[1]) : $ctrl->seccionArticulos();
+        if(isset($params[1])){
+            if($ctrlPub->seccionArticulos($params[1])){
+                break;
+            }
+            else{
+                $ctrlABM = new ABMController();
+                switch($params[1]){
+                    case 'add':
+                        $ctrlABM->agregarArticulo();
+                        break;
+                    case 'borrar':
+                        $id = isset($params[2]) ? (int)$params[2] : null;
+                        $ctrlABM->borrarArticulo($id);
+                        break;
+                    case 'edit':
+                        $ctrlABM->editarArticulo($params[2]);
+                        break;
+                    case 'confirmar':
+                        $ctrlABM->confirmarEdicionArticulo($params[2]);
+                        break;
+                    default:
+                        $ctrlPub->error404();
+                        break;
+                }
+            }
+        }
+        else{
+            $ctrlPub->seccionArticulos();
+        }
         break;
     case 'sesion':
         $ctrlAut->autForm();
@@ -39,66 +92,10 @@ switch ($params[0]) {
     case 'validateRegister':
         $ctrlAut->registrarUsuario();
         break;
-    case 'admin':
-        if(isset($params[1])){
-            if(isset($params[2])){
-                switch ($params[2]){
-                    case 'add':
-                        $ctrl->agregarCliente();
-                        break;
-                    case 'borrar':
-                        $id = isset($params[3]) ? (int)$params[3] : null;
-                        $ctrl->borrarCliente($id);
-                        break;
-                    case 'borrarFK':
-                        $ctrl->borrarFK($params[3]);
-                        break;
-                    case 'edit':
-                        $ctrl->editarCliente($params[3]);
-                        break;
-                    case 'confirmar':
-                        $ctrl->confirmarEdicionCliente($params[3]);
-                        break;
-                    case 'articulos':
-                        if(isset($params[3])){
-                            switch ($params[3]){
-                                case 'add':
-                                    $ctrl->agregarArticulo();
-                                    break;
-                                case 'borrar':
-                                    $id = isset($params[4]) ? (int)$params[4] : null;
-                                    $ctrl->borrarArticulo($id);
-                                    break;
-                                case 'edit':
-                                    $ctrl->editarArticulo($params[4]);
-                                    break;
-                                case 'confirmar':
-                                    $ctrl->confirmarEdicionArticulo($params[4]);
-                                    break;
-                                default:
-                                    if(!$ctrl->adminArticulos($params[3]))
-                                        $ctrl->error404(true);
-                                    break;
-                            }
-                        }
-                        else{
-                            $ctrl->adminArticulos();
-                        }
-                        break;
-                    default:
-                        $ctrl->error404(true);
-                        break;
-                }
-            }
-            else{
-                $params[1] == 'clientes' ? $ctrl->adminClientes() : $ctrl->error404(true);
-            }
-        }
-        else
-            $ctrl->seccionAdmin();
-        break;
+    case 'cerrarSesion':
+        $ctrlAut->cerrarSesion();
     default:
-        $ctrl->error404(false);
+        $ctrlPub->error404();
         break;
 }
 ?>

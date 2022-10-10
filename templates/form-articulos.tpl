@@ -1,17 +1,10 @@
-{include file="head.tpl"}
-
 <!-- formulario de alta de tarea -->
-<main class="flex-shrink-0">
     <div class="container">
-        <h1>Tabla de articulos:</h1>
-        <p>
-            <a href="admin">admin</a>/<a href="admin/clientes">clientes</a>/<a href="admin/clientes/articulos">articulos</a>
-        </p>
         <form 
         {if $resultado == 'edicion'}
-            action="admin/clientes/articulos/confirmar/{$art_actual->id_articulo}"
+            action="articulos/confirmar/{$art_actual->id_articulo}"
         {else}
-            action="admin/clientes/articulos/add" 
+            action="articulos/add" 
         {/if} method="POST" class="my-4" enctype="multipart/form-data">
             <div class="row mb-3">
                 <div class="col-md-7">

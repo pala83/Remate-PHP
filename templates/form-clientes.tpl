@@ -1,17 +1,10 @@
-{include file="head.tpl"}
-
 <!-- formulario de alta de tarea -->
-<main class="flex-shrink-0">
     <div class="container">
-        <h1>Tabla de clientes:</h1>
-        <p>
-            <a href="admin">admin</a>/<a href="admin/clientes">clientes</a>/<a href="admin/clientes/articulos">articulos</a>
-        </p>
         <form 
         {if $resultado == 'edicion'}
-            action="admin/clientes/confirmar/{$cliente->id_cliente}"
+            action="clientes/confirmar/{$cActual->id_cliente}"
         {else}
-            action="admin/clientes/add"
+            action="clientes/add"
         {/if} method="POST" class="my-4">
             <div class="row mb-3">
                 <div class="col">
@@ -20,7 +13,7 @@
                             <label>Nombre <b class="text-danger">(*)</b></label>
                             <input name="nombre" type="text" class="form-control"
                             {if $resultado == 'edicion'}
-                                value="{$cliente->nombre}"
+                                value="{$cActual->nombre}"
                             {/if}
                             required>
                         </div>
@@ -28,7 +21,7 @@
                             <label>Apellido <b class="text-danger">(*)</b></label>
                             <input name="apellido" type="text" class="form-control"
                             {if $resultado == 'edicion'}
-                                value="{$cliente->apellido}"
+                                value="{$cActual->apellido}"
                             {/if}
                             required>
                         </div>
@@ -36,7 +29,7 @@
                             <label>Telefono <b class="text-danger">(*)</b></label>
                             <input name="telefono" type="tel" class="form-control" placeholder="2494-123456"
                             {if $resultado == 'edicion'}
-                                value="{$cliente->telefono}"
+                                value="{$cActual->telefono}"
                             {/if}
                             required>
                         </div>
@@ -45,7 +38,7 @@
                         <label>Email</label>
                         <input name="email" type="mail" class="form-control"
                         {if $resultado == 'edicion'}
-                            value="{$cliente->email}"
+                            value="{$cActual->email}"
                         {/if}
                         >
                     </div>
@@ -62,10 +55,10 @@
                 <div class="alert alert-warning alert-dismissible fade show">
                     <strong>Advertencia!</strong>
                     Este cliente tiene articulos cargados, ¿estas seguro de lo que haces?
-                    <a class="btn btn-sm btn-success" href="admin/clientes/borrarFK/{$cliente->id_cliente}">SI</a>
+                    <a class="btn btn-sm btn-success" href="clientes/borrarFK/{$cActual->id_cliente}">SI</a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-                {/if}
+            {/if}
             {if $resultado == 'exito'}
                 <div class="alert alert-success alert-dismissible fade show">
                     <strong>Operacion exitosa!</strong>
