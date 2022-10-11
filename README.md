@@ -14,6 +14,7 @@ Sitio web **dinámico** implementado enteramente en **PHP**, utilizando el motor
         - [Seccion articulos](#seccion-articulos)
 - [Sesión](#sesión)
     - [Modelo Usuario](#modelo-usuario)
+- [Diagrama de clase](#diagrama-de-clase)
 
 # Remate de articulos varios
 
