@@ -12,6 +12,8 @@ Sitio web **dinámico** implementado enteramente en **PHP**, utilizando el motor
         - [Seccion general](#seccion-general)
         - [Seccion clientes](#seccion-clientes)
         - [Seccion articulos](#seccion-articulos)
+- [Sesión](#sesión)
+    - [Modelo Usuario](#modelo-usuario)
 
 # Remate de articulos varios
 
@@ -35,18 +37,13 @@ La parte **pública** no requiere inicio de sesión y está dividida en 3 seccio
 El usuario administrador es el encargado y autorizado para realizar las acciones ABM con los datos del sitio.
 > **Inicio de sesión**: Existe un botón de **"Acceso"** para poder iniciar sesión y el mismo será cambiado por el botón de **"cierre de sesión"** en caso de que la sesión se inicie exitosamente.
 
-**Aclaración importante**: Un *cliente* en un remate puede ser tanto *comprador* como *vendedor*, pero en este caso solo se cargan y visualizan los datos de los **clientes vendedores**. Por esta razón en la parte pública se visualizan las categorías como **"vendedores"** y en la parte de administración se visualizan como **"clientes"**.
-
+**Aclaración importante**: Un *cliente* en este ejemplo de remate se considera a aquella persoan que aporta articulos para la venta durante el remate.
 
 ## Secciones
 
-**Aclaración**: El routing en la sección de administrador sigue la siguiente semántica.
-- [BASE]/admin
-- [BASE]/admin/categoría/{acción ABM}/{id}
-- [BASE]/admin/categoría/item/{acción ABM}/{id}
-
-Y se decidió hacer así por el ejemplo que dan la consigna del TP, entendiendo que Noticias es la categoría y Productos es el ítem.
-> Al agregar Items (Noticias/Productos/...) ...
+**Aclaración**: El routing en el acceso de administrador sigue la misma semantica que en el acceso publico con la diferencia de que cualquier intencion de realizar una accion ABM sera **redirigido al login**.
+- [BASE]/clientes/{acción ABM}/{id}
+- [BASE]/articulos/{acción ABM}/{id}
 
 ### Seccion general: 
 Se muestra cada categoría con sus respectivos ítems y se puede editar todo.
@@ -69,3 +66,18 @@ Contiene el formulario para cargar artículos, también se visualiza cada artíc
 - **Delete**: Al ser la relación 1:N cada artículo(ítem) es independiente y no existe ningún tipo de restricción al borrarlos de la base de datos.
 - **Edición**: Es la misma funcionalidad que realizamos para el cliente, con la excepción que la Imagen se va a perder, y no, el sitio no te advierte de eso.
     - **Aclaración**: Si, se reutiliza el formulario para hacer la alta de clientes, es exactamente el mismo formulario pero con un botón distinto.
+
+# Sesión
+
+El acceso de administrador se autoriza mediante el **inicio de sesión** en el sitio web, se utiliza una clase auxiliar **Helper** para realizar las acciones necesarias para el manejo de la sesión.
+
+**Aclaración**: Se implemento la parte de **registro** para poder crear nuevos usuarios con acceso Root en la aplicación de manera mas simple.
+## Modelo usuario
+
+Para almacenar los usuarios que tienen **acceso Root** en el sitio web, se crea una nueva tabla sql que almacena el **Email** y la **Contraseña**, también se incorpora un id para identificar a cada usuario particularmente.
+
+Las contraseñas se almacenan en la base de datos en forma de **HASH**.
+
+# Diagrama de clase
+
+![Diagrama de clase](/assets/remate.png)

@@ -28,13 +28,6 @@ class ModeloCliente {
         return $this->db->lastInsertId();
     }
 
-    public function existeID($id){
-        $query = $this->db->prepare("SELECT * FROM cliente WHERE id_cliente = ?");
-        $query->execute([$id]);
-        $cliente = $query->fetchAll(PDO::FETCH_OBJ);
-        return !empty($cliente);
-    }
-
     public function borrar($id) {
         $query = $this->db->prepare("DELETE FROM cliente WHERE id_cliente = ?");
         try {$query->execute([$id]);} 

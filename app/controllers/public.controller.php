@@ -54,9 +54,5 @@ class PubController {
         }
         return $retorno;
     }
-
-    public function login(){
-        $this->loginView->mostrar();
-    }
 }
 ?>
