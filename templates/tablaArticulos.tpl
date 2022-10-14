@@ -49,7 +49,7 @@
                                 <td>{$articulo->nombre_art|capitalize}</td>
                                 <td>{$articulo->cantidad}</td>
                                 <td>{$articulo->valor_base|default:'sin valor base'}</td>
-                                <td>{$clientes[$articulo->id_articulo]}</td>
+                                <td>{$arrCliente[$articulo->id_articulo]}</td>
                                 <td class="text-center"><a class="btn btn-sm btn-primary" href="articulos/{$articulo->id_articulo}">VER</a></td>
                             </tr>
                             <tr>

@@ -3,7 +3,9 @@
 class AutHelper {
     
     public function __construct() {
-        session_start();
+        if(!isset($_SESSION)){
+            session_start(); 
+        }
     }
 
     public function inicSesion($user) {
@@ -13,7 +15,7 @@ class AutHelper {
     }
 
     public function tieneAcceso(){
-        if($_SESSION['IS_LOGGED'])
+        if(isset($_SESSION['IS_LOGGED']))
             return true;
         return false;
     }

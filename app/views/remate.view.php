@@ -32,7 +32,8 @@ class Vista{
         $this->smarty->assign("resultado", $resultado);
         $this->smarty->assign("art_actual", $art);
         $this->smarty->assign("tieneAcceso", $acceso);
-        $this->smarty->assign("imagen", base64_encode($art->imagen));
+        if(!empty($art))
+            $this->smarty->assign("imagen", base64_encode($art->imagen));
         $this->smarty->display("./templates/tablaArticulos.tpl");
     }
     
