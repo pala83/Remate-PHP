@@ -16,6 +16,7 @@ Sitio web **dinámico** implementado enteramente en **PHP**, utilizando el motor
     - [Modelo Usuario](#modelo-usuario)
 - [Diagrama de clase](#diagrama-de-clase)
     - [Aclaraciones sobre el diseño MVC](#aclaraciones-sobre-el-diseño-mvc)
+- [Solución a posibles errores]()
 
 # Remate de articulos varios
 
@@ -98,3 +99,23 @@ Decidí aplicar **Herencia de clases** para el *ABMController* ya que este compa
 - Que la clase ABMController se divida en ABMController para clientes y para artículos.
     - Este es el cambio de diseño más importante y necesario, no se implementó por falta de tiempo y porque para este caso no es tan grave.
 - Que exista una clase general y padre para cada modelo y para cada vista.
+
+# Solución a posibles errores
+
+*error 1153 Got a packet bigger than 'max_allowed_packet' bytes*
+> Este error se detectó al intentar importar la base de datos en PHPMyAdmin en una pc con windows
+
+Si estás leyendo esto es porque no pudiste importar correctamente la base de datos y usas windows.
+
+El error se debe a que las imágenes que utilizo pesan bastante y en linux nunca me dio problemas.
+- Solución:
+    - Dirígete a donde tengas instalado el xampp y a la siguiente ruta **C:\xampp\mysql\bin**.
+    - Apaga el apache, con apagar el mysql alcanza.
+    - Localiza el archivo **my.ini**.
+    - En el archivo vas a cambiar el valor de la siguiente línea
+    ~~~ ini
+    [mysqldump]
+    max_allowed_packet=16M
+    ~~~
+    - Dejalo en 16M.
+    - Volve a prender el apache y podes importar la base de datos correctamente.
