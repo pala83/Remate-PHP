@@ -16,7 +16,7 @@ Sitio web **dinámico** implementado enteramente en **PHP**, utilizando el motor
     - [Modelo Usuario](#modelo-usuario)
 - [Diagrama de clase](#diagrama-de-clase)
     - [Aclaraciones sobre el diseño MVC](#aclaraciones-sobre-el-diseño-mvc)
-- [Solución a posibles errores]()
+- [Solución a posibles errores](#solución-a-posibles-errores)
 
 # Remate de articulos varios
 
