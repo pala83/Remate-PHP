@@ -102,7 +102,7 @@ Decidí aplicar **Herencia de clases** para el *ABMController* ya que este compa
 
 # Solución a posibles errores
 
-*error 1153 Got a packet bigger than 'max_allowed_packet' bytes*
+### *error 1153 Got a packet bigger than 'max_allowed_packet' bytes*
 > Este error se detectó al intentar importar la base de datos en PHPMyAdmin en una pc con windows
 
 Si estás leyendo esto es porque no pudiste importar correctamente la base de datos y usas windows.
@@ -119,3 +119,22 @@ El error se debe a que las imágenes que utilizo pesan bastante y en linux nunca
     ~~~
     - Dejalo en 16M.
     - Volve a prender el apache y podes importar la base de datos correctamente.
+
+### *error por no tener la carpeta templates_c*
+> Este error ocurre cuando clonas el repositorio en una pc con sistema operativo base Linux e intentas ejecutar abrir la aplicación con xampp
+
+El error se debe a que en Linux hay que hacer las cosas, en este sistema no se hacen solas.
+
+- Solución:
+    - Luego de clonar el repositorio acceder a el con
+    ~~~ bash
+    cd TPE-web2
+    ~~~
+    - Crea la carpeta tempaltes_c
+    ~~~ bash
+    mkdir templates_c
+    ~~~
+    - Concede permisos de lectura y escritura a la carpeta (el siguiente comando le da absolutamente todos los permisos que hay)
+    ~~~ bash
+    chmod 777 -R templates_c
+    ~~~
