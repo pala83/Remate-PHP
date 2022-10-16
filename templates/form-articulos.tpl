@@ -36,10 +36,13 @@
                     </div>
                     <div class="form-group">
                         <label>Valor base</label>
-                        <input name="valorB" type="number" step="0.01" class="form-control"
-                        {if $resultado == 'edicion'}
-                            value="{$art_actual->valor_base}"
-                        {/if} >
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                            <input name="valorB" type="number" step="0.01" class="form-control"
+                            {if $resultado == 'edicion'}
+                                value="{$art_actual->valor_base}"
+                            {/if} >
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Imagen <b class="text-danger">(*)</b></label>
